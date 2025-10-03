@@ -1,11 +1,19 @@
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { motion } from 'framer-motion';
-import Scene from '../Scene/Scene';
+import { Stars } from '@react-three/drei';
+import ParticleFieldSimple from '../Scene/ParticleFieldSimple';
 
 const Hero = () => {
   return (
-    <section id="hero" className="hero" style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#000000' }}>
+    <section id="hero" className="hero" style={{ 
+      position: 'relative', 
+      minHeight: '100vh', 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center',
+      zIndex: 1
+    }}>
 
       {/* Hero Content - IN FRONT of canvas */}
       <div className="container hero-content" style={{ position: 'relative', zIndex: 10, textAlign: 'center' }}>
