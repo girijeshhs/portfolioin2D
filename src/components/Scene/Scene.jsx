@@ -1,9 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Stars } from '@react-three/drei';
-import ParticleField from './ParticleField';
-import GeometricShape from './GeometricShape';
-import Lights from './Lights';
+import ParticleFieldSimple from './ParticleFieldSimple';
 import { gsap } from 'gsap';
 import * as THREE from 'three';
 
@@ -63,40 +61,51 @@ const Scene = () => {
 
   return (
     <>
-      {/* Ambient Stars Background */}
+      {/* Color the scene so we can see it's working */}
+      <color attach="background" args={['#000000']} />
+      
+      {/* Basic lighting */}
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[10, 10, 5]} intensity={1} color="#ffffff" />
+      <pointLight position={[-10, -10, -5]} intensity={0.5} color="#8B5CF6" />
+
+      {/* Stars background */}
       <Stars
         radius={100}
         depth={50}
-        count={2000}
+        count={5000}
         factor={4}
-        saturation={0.5}
+        saturation={0}
         fade
         speed={1}
       />
 
       <group ref={groupRef}>
-        {/* Lighting Setup */}
-        <Lights />
+        {/* Simple test shapes to verify 3D is working */}
+        <mesh position={[0, 0, 0]}>
+          <torusKnotGeometry args={[1, 0.3, 128, 32, 2, 3]} />
+          <meshStandardMaterial 
+            color="#8B5CF6" 
+            emissive="#8B5CF6"
+            emissiveIntensity={0.2}
+            metalness={0.8}
+            roughness={0.2}
+          />
+        </mesh>
 
-        {/* Particle Constellation */}
-        <ParticleField />
-
-        {/* Interactive Geometric Shape */}
-        <GeometricShape />
+        {/* Particle system */}
+        <ParticleFieldSimple />
       </group>
 
-      {/* Orbit Controls for shape interaction */}
+      {/* Orbit Controls */}
       <OrbitControls
         enableZoom={false}
         enablePan={false}
+        autoRotate={true}
+        autoRotateSpeed={0.5}
         maxPolarAngle={Math.PI / 2}
         minPolarAngle={Math.PI / 3}
-        autoRotate={false}
-        rotateSpeed={0.5}
       />
-
-      {/* Fog for depth */}
-      <fog attach="fog" args={['#000000', 5, 25]} />
     </>
   );
 };

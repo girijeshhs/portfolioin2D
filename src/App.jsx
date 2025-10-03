@@ -17,7 +17,7 @@ function App() {
       <Contact />
       <footer className="footer">
         <div className="container">
-          <p>© 2024 Your Name. Built with React Three Fiber & Framer Motion.</p>
+          <p>© 2025 Your Name. Built with React & Framer Motion.</p>
         </div>
       </footer>
     </>

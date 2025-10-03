@@ -5,26 +5,10 @@ import Scene from '../Scene/Scene';
 
 const Hero = () => {
   return (
-    <section id="hero" className="hero">
-      {/* 3D Canvas Background */}
-      <div className="canvas-container">
-        <Canvas
-          camera={{ position: [0, 0, 8], fov: 75 }}
-          gl={{ 
-            antialias: true, 
-            alpha: true,
-            powerPreference: "high-performance"
-          }}
-          dpr={[1, 2]} // Limit pixel ratio for performance
-        >
-          <Suspense fallback={null}>
-            <Scene />
-          </Suspense>
-        </Canvas>
-      </div>
+    <section id="hero" className="hero" style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#000000' }}>
 
-      {/* Hero Content */}
-      <div className="container hero-content">
+      {/* Hero Content - IN FRONT of canvas */}
+      <div className="container hero-content" style={{ position: 'relative', zIndex: 10, textAlign: 'center' }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
